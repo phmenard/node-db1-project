@@ -47,6 +47,21 @@ router.get('/account/:name', async (req, res, next) => {
     }
 })
 
+// get an account by budget
+router.get('/budget/:budget', async (req, res, next) => {
+    try {
+        const account = await accountsDb.getByBudget(req.params.budget);
+        if (!account) {
+            res.status(404).json({ message: `no account found with that budgeit ${req.params.budget}` });
+        } else {
+            res.status(200).json(account);
+        }
+
+    } catch (err) {
+        next(err);
+    }
+})
+
 // add a new account
 router.post('/', async(req, res, next) => {
     try{

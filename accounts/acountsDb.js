@@ -21,6 +21,14 @@ function getByName(name) {
 
 }
 
+// get an account by the account budget  
+function getByBudget(budget) {
+    return db('accounts')
+        .where('budget', '>=', budget)
+
+
+}
+
 // create a new account
 function insert(account) {
     return db('accounts')
@@ -51,4 +59,5 @@ module.exports = {
     insert,
     update,
     remove,
+    getByBudget
 };
