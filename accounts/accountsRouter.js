@@ -37,7 +37,7 @@ router.get('/account/:name', async (req, res, next) => {
     try {
         const account = await accountsDb.getByName(req.params.name);
         if (!account) {
-            res.status(404).json({ message: "invalid account name" });
+            res.status(404).json({ message: `no account found with the name ${req.params.name}` });
         } else {
             res.status(200).json(account);
         }
