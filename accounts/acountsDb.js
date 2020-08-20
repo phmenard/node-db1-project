@@ -1,15 +1,19 @@
+// DB helper file used in the accounts router
 const db = require('../data/dbConfig');
 
+// get all accounts
 function get() {
     return db('accounts');
 }
 
+// get an account by it's id
 function getById(id) {
     return db('accounts')
-      .where({ id })
-      .first();
-  }
+        .where({ id })
+        .first();
+}
 
+// get an account by the account holders name  
 function getByName(name) {
     return db('accounts')
         .where('name', name)
@@ -17,25 +21,28 @@ function getByName(name) {
 
 }
 
+// create a new account
 function insert(account) {
     return db('accounts')
-      .insert(account)
-      .then(ids => {
-        return getById(ids[0]);
-      });
-  }
+        .insert(account)
+        .then(ids => {
+            return getById(ids[0]);
+        });
+}
 
-  function update(id, changes) {
+// update an existing account
+function update(id, changes) {
     return db('accounts')
-      .where({ id })
-      .update(changes);
-  }
-  
-  function remove(id) {
+        .where({ id })
+        .update(changes);
+}
+
+// remove an account
+function remove(id) {
     return db('accounts')
-      .where('id', id)
-      .del();
-  }
+        .where('id', id)
+        .del();
+}
 
 module.exports = {
     get,
