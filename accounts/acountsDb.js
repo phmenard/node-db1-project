@@ -21,7 +21,7 @@ function getByName(name) {
 
 }
 
-// get an account by the account budget  
+// get an account if buget is greater than or = to given budget  
 function getByBudget(budget) {
     return db('accounts')
         .where('budget', '>=', budget)
